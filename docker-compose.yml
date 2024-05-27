@@ -3,7 +3,7 @@
     image: docapp
     build:
       context: .
-      dockerfile: ../Dockerfile
+      dockerfile: DocApp/Dockerfile
     ports:
       - "8080:9000"
       - "8081:8081"

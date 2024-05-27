@@ -9,8 +9,6 @@ namespace DocApp.Controller;
 public class BookController: ControllerBase
 {
     private readonly AppDbContext _context;
-    private int? _bookIdWithMaxPages;
-
     public BookController(AppDbContext context)
     {
         _context = context;
@@ -34,11 +32,11 @@ public class BookController: ControllerBase
         return book == null ? NotFound() : Ok(book);
     }
     
-    [HttpGet]
-    [Route("pages/max")]
-    public ActionResult<Book> GetBookWithMaxPages()
-    {
-        var book = _context.Books.OrderByDescending(b => b.NumPages).Take(1).SingleOrDefault();
-        return book == null ? NotFound() : Ok(book);
-    }
+    // [HttpGet]
+    // [Route("pages/max")]
+    // public ActionResult<Book> GetBookWithMaxPages()
+    // {
+    //     var book = _context.Books.OrderByDescending(b => b.NumPages).Take(1).SingleOrDefault();
+    //     return book == null ? NotFound() : Ok(book);
+    // }
 }
