@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  docapp:
+    build:
+      context: "C:\\Users\\cs\\RiderProjects\\wsei-back-end\\lab\\DocApp\\DocApp"
+      dockerfile: "DocApp/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/DocApp.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "docapp:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\cs\\.nuget\\packages:/root/.nuget/packages"
+    - "C:\\Users\\cs\\RiderProjects\\wsei-back-end\\lab\\DocApp\\DocApp\\DocApp:/app:rw"
+    - "C:\\Users\\cs\\RiderProjects\\wsei-back-end\\lab\\DocApp\\DocApp:/src:rw"
+    working_dir: "/app"
