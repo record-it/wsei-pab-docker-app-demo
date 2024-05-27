@@ -4,7 +4,6 @@ Gotowy kontener zawiera:
 - aplikację
 - silnik bazodanowy PostgreSQL
 - zestaw skryptów inicjujących bazę z danymi
-- 
 Pliki i katalogi:
 - Dockerfile - plik opisujący tworzenie obrazu aplikacji na podstawie dwóch obrazów .NET (ASPNET i SDK)
 - docker-compose.yml - plik opisujący tworzenia obrazu zawierającego 
