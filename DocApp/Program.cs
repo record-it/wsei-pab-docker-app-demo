@@ -10,6 +10,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("GravityBooks"));
 });
+builder.Services.AddSingleton<IMessageProducer, RabbitMQMessageProducer>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 var app = builder.Build();

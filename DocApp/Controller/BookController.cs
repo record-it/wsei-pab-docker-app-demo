@@ -9,19 +9,26 @@ namespace DocApp.Controller;
 public class BookController: ControllerBase
 {
     private readonly AppDbContext _context;
-    public BookController(AppDbContext context)
+    private readonly IMessageProducer _messageProducer;
+    public BookController(AppDbContext context, IMessageProducer messageProducer)
     {
         _context = context;
+        _messageProducer = messageProducer;
     }
     
     [HttpGet]
     public IAsyncEnumerable<Book> GetAllBooks(int page = 0, int size = 100)
     {
-        return _context.Books
+        _messageProducer.SendMessage(new RequestStatistic()
+        {
+            Path = "/api/books",
+        });
+        var response = _context.Books
             .OrderBy(e => e.Title)
             .Skip(page * size)
             .Take(size)
             .AsAsyncEnumerable();
+        return response;
     }
     
     [HttpGet]
@@ -31,12 +38,4 @@ public class BookController: ControllerBase
         var book = _context.Books.Find(id);
         return book == null ? NotFound() : Ok(book);
     }
-    
-    // [HttpGet]
-    // [Route("pages/max")]
-    // public ActionResult<Book> GetBookWithMaxPages()
-    // {
-    //     var book = _context.Books.OrderByDescending(b => b.NumPages).Take(1).SingleOrDefault();
-    //     return book == null ? NotFound() : Ok(book);
-    // }
 }
