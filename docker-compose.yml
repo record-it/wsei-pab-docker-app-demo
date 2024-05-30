@@ -33,7 +33,7 @@
         - POSTGRES_DB=gravity_books
     volumes:
         - postgres-data:/var/lib/postgresql/data
-        - ./sqlscripts:/docker-entrypoint-initdb.d
+        - ./DocApp/sqlscripts:/docker-entrypoint-initdb.d
   statistic:
     image: statistic
     build:
@@ -44,7 +44,6 @@
       - web
 volumes:
   postgres-data:
-    
 networks:
   rabbitmq_net:
     driver: bridge
